@@ -1,0 +1,26 @@
+.inputGroup{
+    display: flex;
+    flex-direction: column;
+
+    span{
+        font-weight: bolder;
+        display: block;
+        margin-bottom: 0.3rem;
+    }
+
+    textarea{
+        box-sizing: border-box;
+        border: none;
+        background-color: var(--input-bg-default);
+        outline: none;
+        min-height: calc(1rem * 3 + 2rem);
+        padding: 1rem;
+        line-height: 1.5;
+        resize: none;
+        border-radius: 0.5rem;
+
+        &.inputInvalid{
+            background-color: rgba(var(--color-warning), 0.1); 
+        }
+    }
+}

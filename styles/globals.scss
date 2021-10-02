@@ -1,0 +1,55 @@
+
+:root{
+    --shadow-default: rgba(0,0,0,0.2);
+    --background-default: rgba(255,255,255);
+    --border-default: rgba(0,0,0,0.1);
+    --input-bg-default: rgba(0,0,0,0.05);
+
+    --color-reverse: 255,255,255;
+    --color-main: 69, 44, 209;
+    --color-main-hover: 28, 9, 138;
+    --color-warning: 255, 0, 76;
+    --color-info: 0, 119, 255;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    min-height: 100%;
+    height: 100%;
+    background-color: --background-default;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#__next {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: rgb(var(--color-main));
+    text-decoration: none;
+
+    &:hover{
+        color: rgb(var(--color-main-hover));
+    }
+}
