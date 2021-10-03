@@ -8,6 +8,10 @@
     margin: 0 calc((100vw * 0.1)/2);
 
     @media (min-width: 1025px) {
+        margin: 0 4rem;
+    }
+
+    @media (min-width: 1200px) {
         margin: 0 16rem;
     }
 }

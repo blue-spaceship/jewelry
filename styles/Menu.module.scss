@@ -5,6 +5,12 @@
     height: 100%;
     background-color: var(--background-default);
     z-index: 10;
+    transform: translateX(-100%);
+
+    @media (min-width: 1200px) {
+        flex-direction: row;
+        transform: translateX(0);
+    }
 
     menu{
         flex: 1;

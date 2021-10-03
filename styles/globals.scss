@@ -1,18 +1,24 @@
 
 :root{
-    --shadow-default: rgba(0,0,0,0.2);
     --background-default: rgba(255,255,255);
-    --border-default: rgba(0,0,0,0.1);
-    --input-bg-default: rgba(0,0,0,0.05);
+    --shadow-default: rgba(0,0,0,0.2);
+    --border-default: rgba(0,0,0,0.03);
+    --input-bg-default: rgba(0,0,0,0.02);
 
     --color-reverse: 255,255,255;
-    --color-main: 69, 44, 209;
-    --color-main-hover: 28, 9, 138;
-    --color-warning: 255, 0, 76;
-    --color-info: 0, 119, 255;
+
+    --color-main: 18, 218, 204;
+    --color-main-hover: 13, 183, 187;
+    --text-main: 0,0,0;
+    
+    --color-success: 79, 181, 45;
+    --color-info: 84, 152, 255;
+    --color-warning: 255, 182, 0;
+    --color-danger: 255, 99, 96;
 
     font-size: 14px;
     line-height: 1.5;
+    color: rgba( var( --text-main ), 0.7 )
 }
 
 html,

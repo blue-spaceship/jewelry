@@ -4,7 +4,7 @@ var Schema = mongoose.Schema
 var BotSchema = new Schema({
     name: { type: String, trim: true },
     description: { type: String },
-    botWebhook: { type: String, unique: true, trim: true },
+    botWebhook: { type: String, trim: true },
     title: { type: String },
     color: { type: String, default: '#0099ff' },
     template: { type: String, default: "Hello {{ name }}!" },
