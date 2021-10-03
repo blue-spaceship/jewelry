@@ -53,10 +53,10 @@ const Handle = async (req,res) => {
         embed
     ).then( result => {
         history.message = { ...history.message, id: result.id, wasSended: true }
+        res.status(200)
     }).catch( error => {
         history.message = { ...history.message, wasSended: false }
-    }).finally(async ()=>{
-        res.status(200).json( await ( await new BotHistory(history) ).save() )
+        res.status(500).json(error)
     })
 
     res.end()
