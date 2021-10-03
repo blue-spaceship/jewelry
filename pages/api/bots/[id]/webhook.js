@@ -23,15 +23,12 @@ const Handle = async (req,res) => {
 
     // const webhookClient = new WebhookClient({ url: bot.botWebhook })
 
-    const embed = new MessageEmbed()
-        .setTitle(bot.title)
-        .setColor(bot.color)
-        .setTimestamp()
-        .setThumbnail(body.icon)
-        .setImage(body.cover)
-        .setURL(body.link || '#')
-        .addFields( ...body.fields )
-        .setFooter(`Enviado pelo bot ${ bot.name }`);
+    const embed = new MessageEmbed() .setTitle( bot.title ).setTimestamp().setFooter(`Enviado pelo bot ${ bot.name }`)
+        if(body.embed.icon){ embed.setThumbnail( body.embed.icon ) }
+        if(body.embed.color){ embed.setColor( body.embed.color ) }
+        if(body.embed.fields){ embed.addFields( ...body.embed.fields ) }
+        if(body.embed.setURL){ embed.setURL(body.embed.link ) }
+        if(body.embed.cover){ embed.setImage(body.embed.cover ) }
 
     const history = {
         bot: id,
