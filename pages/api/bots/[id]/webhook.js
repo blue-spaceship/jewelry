@@ -3,7 +3,8 @@ import Mongo from '/middleware/mongo'
 import Handlebars from 'handlebars/dist/cjs/handlebars'
 
 import { Bot, BotHistory } from '/models/'
-import { MessageEmbed, WebhookClient }  from 'discord.js'
+import Discord, {  MessageEmbed }  from 'discord.js'
+import Axios from 'axios'
 
 const Handle = async (req,res) => {
     const { id } = req.query
@@ -20,7 +21,7 @@ const Handle = async (req,res) => {
         return res.status(404)
     }
 
-    const webhookClient = new WebhookClient({ url: bot.botWebhook })
+    // const webhookClient = new WebhookClient({ url: bot.botWebhook })
 
     const embed = new MessageEmbed()
         .setTitle(bot.title)
@@ -30,7 +31,6 @@ const Handle = async (req,res) => {
         .setImage(body.cover)
         .setURL(body.link || '#')
         .addFields( ...body.fields )
-        .setDescription(Handlebars.compile(bot.template)(body))
         .setFooter(`Enviado pelo bot ${ bot.name }`);
 
     const history = {
@@ -45,9 +45,13 @@ const Handle = async (req,res) => {
         }
     }
 
-    await webhookClient.send({
-        embeds: [embed],
-    }).then( result => {
+    const data = await Axios.get(bot.botWebhook).then( result => result.data )
+    const hook = new Discord.WebhookClient(data.id, data.token)
+
+    await hook.send(
+        Handlebars.compile(bot.template)(body),
+        embed
+    ).then( result => {
         history.message = { ...history.message, id: result.id, wasSended: true }
     }).catch( error => {
         history.message = { ...history.message, wasSended: false }
