@@ -44,16 +44,21 @@ const Handle = async (req,res) => {
     const data = await Axios.get(bot.botWebhook).then( result => result.data )
     const hook = new Discord.WebhookClient(data.id, data.token)
 
+    async function saveHistory(){
+        const record = await new BotHistory(history)
+        await record.save()
+    }
+
     await hook.send(
         Handlebars.compile(bot.template)(body),
         embed
     ).then( result => {
         history.message = { ...history.message, id: result.id, wasSended: true }
-        (await new BotHistory( history )).save() 
+        saveHistory()
         res.status(200)
     }).catch( error => {
         history.message = { ...history.message, wasSended: false }
-        (await new BotHistory( history )).save() 
+        saveHistory()
         res.status(500).json(error)
     })
 
