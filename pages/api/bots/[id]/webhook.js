@@ -26,7 +26,7 @@ const Handle = async (req,res) => {
     if(body.embed){
         if(body.embed.icon){ embed.setThumbnail( body.embed.icon ) }
         if(body.embed.fields){ embed.addFields( ...body.embed.fields ) }
-        if(body.embed.setURL){ embed.setURL(body.embed.link ) }
+        if(body.embed.link){ embed.setURL(body.embed.link ) }
         if(body.embed.cover){ embed.setImage(body.embed.cover ) }
     }
 
