@@ -21,14 +21,13 @@ const Handle = async (req,res) => {
         return res.status(404)
     }
 
-    // const webhookClient = new WebhookClient({ url: bot.botWebhook })
-
-    const embed = new MessageEmbed() .setTitle( bot.title ).setTimestamp().setFooter(`Enviado pelo bot ${ bot.name }`)
+    const embed = new MessageEmbed() .setTitle( bot.title ).setTimestamp().setFooter(`Enviado pelo bot ${ bot.name }`).setColor( bot.color || '')
+    if(body.embed){
         if(body.embed.icon){ embed.setThumbnail( body.embed.icon ) }
-        if(body.embed.color){ embed.setColor( body.embed.color ) }
         if(body.embed.fields){ embed.addFields( ...body.embed.fields ) }
         if(body.embed.setURL){ embed.setURL(body.embed.link ) }
         if(body.embed.cover){ embed.setImage(body.embed.cover ) }
+    }
 
     const history = {
         bot: id,
@@ -50,9 +49,11 @@ const Handle = async (req,res) => {
         embed
     ).then( result => {
         history.message = { ...history.message, id: result.id, wasSended: true }
+        (await new BotHistory( history )).save() 
         res.status(200)
     }).catch( error => {
         history.message = { ...history.message, wasSended: false }
+        (await new BotHistory( history )).save() 
         res.status(500).json(error)
     })
 

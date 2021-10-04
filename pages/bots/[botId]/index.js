@@ -74,7 +74,7 @@ const Bot = ({ data }) => {
 
         const test = JSON.parse(testData.content)
         
-        await Axios.post(`http://localhost:3000/api/bots/${bot._id}/webhook`, {...test}).then( result => {
+        await Axios.post(`/api/bots/${bot._id}/webhook`, {...test}).then( result => {
             alert("Teste enviado com sucesso")
         } ).catch( error => {
             console.error(error)
@@ -91,7 +91,7 @@ const Bot = ({ data }) => {
             </Head>
 
             <div style={{ gap: '1rem', justifyContent: 'end', display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-                { testData.isValid && <button className={ inputs.button } onClick={ testButton }>Enviar teste</button> }
+                { testData.isValid !== false && <button className={ inputs.button } onClick={ testButton }>Enviar teste</button> }
                 <label className={ bot.isActive ? inputs.checkButtonActive : inputs.checkButton }>
                     <span>Bot { bot.isActive ? 'ativo' : 'inativo' }</span>
                     <input type="checkbox" onChange={ event => { setBot( { ...bot, isActive : event.target.checked } ) }} checked={bot.isActive} required/>
