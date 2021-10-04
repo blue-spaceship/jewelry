@@ -71,12 +71,12 @@ const Bot = ({ data }) => {
 
     const testButton = async (event) => {
         event.preventDefault()
-
-        const test = JSON.parse(testData.content)
-        
-        await Axios.post(`/api/bots/${bot._id}/webhook`, {...test}).then( result => {
+        const test = JSON.parse(testData.content)        
+        await Axios.post(`/api/bots/${bot._id}/test`,{
+            ...test
+        }).then( result => {
             alert("Teste enviado com sucesso")
-        } ).catch( error => {
+        }).catch( error => {
             console.error(error)
             alert("Algo deu errado")
         })

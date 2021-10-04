@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import Mongo from '/middleware/mongo'
 import Handlebars from 'handlebars/dist/cjs/handlebars'
+import Auth from '/middleware/auth'
 
 import { Bot, BotHistory } from '/models/'
 import Discord, {  MessageEmbed }  from 'discord.js'
@@ -46,7 +47,6 @@ const Handle = async (req,res) => {
 
     async function saveHistory(){
         const record = await new BotHistory(history)
-        await record.save()
     }
 
     await hook.send(
@@ -65,4 +65,4 @@ const Handle = async (req,res) => {
     res.end()
 }
 
-export default Mongo(Handle)
+export default Auth(Mongo(Handle))
