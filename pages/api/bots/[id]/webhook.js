@@ -22,12 +22,15 @@ const Handle = async (req,res) => {
         return res.status(404)
     }
 
-    const embed = new MessageEmbed() .setTitle( bot.title ).setTimestamp().setFooter(`Enviado pelo bot ${ bot.name }`).setColor( bot.color || '')
+    const embed = new MessageEmbed().setTitle( bot.title ).setTimestamp().setFooter(`Enviado pelo bot ${ bot.name }`).setColor( bot.color || '')
+    
     if(body.embed){
         if(body.embed.icon){ embed.setThumbnail( body.embed.icon ) }
         if(body.embed.fields){ embed.addFields( ...body.embed.fields ) }
-        if(body.embed.link){ embed.setURL(body.embed.link ) }
-        if(body.embed.cover){ embed.setImage(body.embed.cover ) }
+        if(body.embed.link){ embed.setURL(body.embed.link) }
+        if(body.embed.cover){ embed.setImage(body.embed.cover) }
+        if(body.embed.title){ embed.setTitle(body.embed.title) }
+        if(body.embed.description){ embed.setDescription(body.embed.description) }
     }
 
     const history = {
